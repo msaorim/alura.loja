@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.msaorim.loja.entities.Produto;
+import br.com.msaorim.loja.entities.enums.Categoria;
 import br.com.msaorim.loja.repositories.ProdutoRepository;
 
 @Configuration
@@ -16,7 +17,7 @@ public class Teste implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		var p1 = new Produto(null, "MacBook Pro-X", "Notebook da Apple", 10000.0);
+		var p1 = new Produto(null, "MacBook Pro-X", "Notebook da Apple", 10000.0, Categoria.CELULAR);
 		produtoRepository.save(p1);
 		
 	}
