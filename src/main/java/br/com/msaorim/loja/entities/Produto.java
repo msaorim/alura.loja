@@ -6,15 +6,12 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import br.com.msaorim.loja.entities.enums.Categoria;
 
 @Entity
 @Table(name = "TB_PRODUTO")
@@ -32,7 +29,8 @@ public class Produto implements Serializable {
 	
 	private LocalDate dataCriacao = LocalDate.now();
 	
-	@Enumerated(EnumType.STRING)
+	@ManyToOne
+	@JoinColumn(name="CATEGORIA_FK")
 	private Categoria categoria;
 	
 	public Produto() {
