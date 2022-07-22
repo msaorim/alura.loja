@@ -2,6 +2,8 @@ package br.com.msaorim.loja.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +35,9 @@ public class Produto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="CATEGORIA_FK")
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "produto")
+	private List<ItemPedido> itens = new ArrayList<>();
 	
 	public Produto() {
 		
@@ -87,6 +93,14 @@ public class Produto implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override
