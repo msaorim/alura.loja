@@ -38,6 +38,7 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 		this.produto = produto;
 		this.pedido = pedido;
+		this.precoUnitario = produto.getPreco();
 	}
 
 	public Long getId() {

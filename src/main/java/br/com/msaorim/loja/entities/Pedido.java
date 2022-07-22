@@ -41,6 +41,12 @@ public class Pedido implements Serializable {
 		this.id = id;
 		this.cliente = cliente;
 	}
+	
+	public void adicionarItem(ItemPedido item) {
+		item.setPedido(this);
+		itens.add(item);
+	}
+	
 
 	public LocalDate getData() {
 		return data;
