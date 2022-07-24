@@ -62,7 +62,7 @@ public class Teste implements CommandLineRunner {
 				break;
 			case '3':
 				System.out.println("LISTA DOS PRODUTOS");
-				System.out.println("=================");
+				System.out.println("==================");
 				listarProduto();
 				break;
 			default: {
@@ -80,7 +80,7 @@ public class Teste implements CommandLineRunner {
 		System.out.print("\nNome da Categoria: ");
 		String nome = sc.nextLine();
 		var cat1 = new Categoria(null, nome);
-		System.out.println("\nSalvando categoria: " + cat1.getNome() + "... salvo com sucesso!");
+		System.out.println("Salvando categoria: " + cat1.getNome() + "... salvo com sucesso!");
 		categoriaRepository.save(cat1);
 	}
 
@@ -121,6 +121,7 @@ public class Teste implements CommandLineRunner {
 					ficar = false;
 				} else {
 					System.out.println("Categoria Inválida !!!!!");
+					ficar = false;
 				}
 			}
 		}
