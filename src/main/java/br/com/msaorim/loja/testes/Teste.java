@@ -125,7 +125,6 @@ public class Teste implements CommandLineRunner {
 				}
 			}
 		}
-
 	}
 
 	public void listarProduto() {
