@@ -1,6 +1,9 @@
 package br.com.msaorim.loja.testes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,39 +23,96 @@ public class Teste implements CommandLineRunner {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
+	Scanner sc = new Scanner(System.in);
+	boolean continua = true;
+	char resp = 's';
+
 	@Override
 	public void run(String... args) throws Exception {
 
-		var cat1 = new Categoria(null, "Celular");
-		var p1 = new Produto(null, "MacBook Pro-X", "Notebook da Apple", 10000.0, cat1);
+		while (continua) {
+			System.out.println("\n\nTeste de Cadastros");
+			System.out.println("==================\n");
+			System.out.println("0. Sair");
+			System.out.println("1. Cadastro de Categoria");
+			System.out.println("2. Cadastro de Produto");
+			System.out.println("3. Listagem de Produtos Cadastrados");
+			System.out.println("4. Criar Pedido");
+			System.out.println("5. Adicionar Itens ao Pedido");
+			System.out.println("6. Consultar Pedido");
+			System.out.print("\nEscolha a opção: --->");
+			resp = sc.next().charAt(0);
 
-		System.out.println("\nSalvando categoria " + cat1.getNome() + " ... CREATE ...");
-		categoriaRepository.save(cat1);
-		produtoRepository.save(p1);
-		System.out.println("\nSalvando produto " + p1.getNome() + " ...");
-		var p2 = new Produto(null, "MacBook Pro-Y", "Notebook da Apple", 10000.0, cat1);
-		produtoRepository.save(p2);
-		System.out.println("\nSalvando produto " + p2.getNome() + " ...");
+			System.out.println(".\n.\n");
 
-		p2.setNome("Celular XPTO");
-
-		produtoRepository.save(p2);
-		System.out.println("\nAlterando o nome do produto " + p2.getNome() + " ... UPDATE ...");
-		List<Produto> listaProdutos = produtoRepository.findAll();
-
-		System.out.println("\nListando os produtos ... READ ...");
-		for (Produto produto : listaProdutos) {
-			System.out.println("ID: " + produto.getId() + ", Nome: " + produto.getNome());
+			switch (resp) {
+			case '0':
+				System.out.println("Saindo ...");
+				continua = false;
+				break;
+			case '1':
+				System.out.println("CADASTRAR CATEGORIA");
+				System.out.println("===================");
+				salvarCategoria();
+				break;
+			case '2':
+				System.out.println("CADASTRAR PRODUTO");
+				System.out.println("=================");
+				salvarProduto();
+				break;
+			default: {
+				System.out.println("Opção inválida!!!");
+				break;
+			}
+			}
 		}
 
-		System.out.println("\nDeletando o produto com ID 1: " + p1.getNome() + " ... DELETE ...");
-		produtoRepository.deleteById(1L);
+		sc.close();
+	}
 
-		listaProdutos = produtoRepository.findAll();
-
-		System.out.println("\nListando os produtos ...");
-		for (Produto produto : listaProdutos) {
-			System.out.println("ID: " + produto.getId() + ", Nome: " + produto.getNome());
+	public void salvarCategoria() {
+		System.out.print("\nNome da Categoria: ");
+		String nome = sc.next();
+		var cat1 = new Categoria(null, nome);
+		System.out.println("\nSalvando categoria: " + cat1.getNome() + "... salvo com sucesso!");
+		categoriaRepository.save(cat1);
+	}
+	
+	public void salvarProduto() {
+		System.out.print("\nNome do Produto: ");
+		String nome = sc.next();
+		
+		System.out.print("\nDescrição do Produto: ");
+		String descricao = sc.next();
+		
+		System.out.print("\nPreço do Produto: ");
+		Double preco = sc.nextDouble();
+		
+		System.out.println("\nCategoria do Produto: ");
+		List<Categoria> lista = new ArrayList<>();
+		lista = categoriaRepository.findAll();
+		for (Categoria c : lista) {
+			System.out.println(c.getId() + ": " + c.getNome());
+		}
+		boolean ficar = true;
+		
+		while (ficar) {
+			System.out.print("\nEscolha uma Categoria: ");
+			long catEscolhida = sc.nextLong();
+			System.out.println("");
+			Optional<Categoria> obj = categoriaRepository.findById(catEscolhida);
+			if(obj.isPresent()) {
+				var p = new Produto(null, nome, descricao, preco, obj.get());
+				System.out.println(p.getId() + "\n" +
+						p.getNome() + "\n" +
+						p.getDescricao() + "\n" +
+						p.getPreco() + "\n" +
+						p.getCategoria().getNome());
+				produtoRepository.save(p);
+				ficar = false;
+			}else {
+				System.out.println("Categoria Inválida !!!!!");
+			}
 		}
 	}
 
