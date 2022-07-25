@@ -10,13 +10,13 @@
 	crossorigin="anonymous">
 <title>Produtos</title>
 </head>
-<body>
-	<div class="container container-ms">
+<body class="text-bg-dark p-3">
+	<div class="container container-sm">
 		<header>
 			<div class="h1">Produtos</div>
 		</header>
-		<div class="card mb-10" th:each="produtos: ${produtos}">
-			<div class="card-header" th:text="${produtos.nome}">Nome do
+		<div class="card mb-2 text-bg-primary p-3" th:each="produtos: ${produtos}">
+			<div class="card-header text-bg-dark p-3" th:text="${produtos.nome}">Nome do
 				Produto</div>
 			<div class="card-body">
 				<div th:text="${produtos.descricao}">Descrição</div>
