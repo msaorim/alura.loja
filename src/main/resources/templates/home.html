@@ -2,15 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+	crossorigin="anonymous">
 <title>Produtos</title>
 </head>
 <body>
-	<div th:each="produtos: ${produtos}">
-		<div th:text="${produtos.nome}">Nome do Produto</div>
-		<div th:text="${produtos.descricao}">Descrição</div>
-		<div>Valor R$ <span th:text="${produtos.preco}">100,00</span></div>
-		<div>Categoria: <span th:text="${produtos.categoria.nome}">Eletro</span></div>
-		<div>--------------</div>
+	<div class="container container-ms">
+		<header>
+			<div class="h1">Produtos</div>
+		</header>
+		<div class="card mb-10" th:each="produtos: ${produtos}">
+			<div class="card-header" th:text="${produtos.nome}">Nome do
+				Produto</div>
+			<div class="card-body">
+				<div th:text="${produtos.descricao}">Descrição</div>
+				<div>
+					Valor R$ <span th:text="${produtos.preco}">100,00</span>
+				</div>
+				<div>
+					Categoria: <span th:text="${produtos.categoria.nome}">Eletro</span>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
