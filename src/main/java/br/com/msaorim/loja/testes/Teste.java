@@ -1,18 +1,20 @@
 package br.com.msaorim.loja.testes;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.msaorim.loja.entities.Categoria;
+import br.com.msaorim.loja.entities.Cliente;
+import br.com.msaorim.loja.entities.ItemPedido;
+import br.com.msaorim.loja.entities.Pedido;
 import br.com.msaorim.loja.entities.Produto;
 import br.com.msaorim.loja.repositories.CategoriaRepository;
+import br.com.msaorim.loja.repositories.ClienteRepository;
+import br.com.msaorim.loja.repositories.ItemPedidoRepository;
+import br.com.msaorim.loja.repositories.PedidoRepository;
 import br.com.msaorim.loja.repositories.ProdutoRepository;
 
 @Configuration
@@ -23,6 +25,15 @@ public class Teste implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 //
 //	Scanner sc = new Scanner(System.in);
 //	boolean continua = true;
@@ -43,6 +54,18 @@ public class Teste implements CommandLineRunner {
 		var prod5 = new Produto(null, "Monitor XPTO", "Monitor sem fio. Led Ultra HD SmartTech New Generation. 65 polegadas Samsung", 15500.0, cat1);
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
+		var cl1 = new Cliente(null, "Jose", "123.123.123-00");
+		clienteRepository.save(cl1);
+		var ped1 = new Pedido(null, cl1);
+		pedidoRepository.save(ped1);
+		
+		var item1 = new ItemPedido(null, 2, prod1, ped1);
+		var item2 = new ItemPedido(null, 6, prod3, ped1);
+		ped1.adicionarItem(item1);
+		ped1.adicionarItem(item2);
+		
+		itemPedidoRepository.saveAll(Arrays.asList(item1, item2));
+		pedidoRepository.save(ped1);
 		
 
 //		while (continua) {
