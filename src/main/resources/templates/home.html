@@ -14,11 +14,21 @@
 	<div class="container container-sm">
 		<header>
 			<div class="h1">Produtos</div>
+			
+			<nav class="navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-between">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+					<a class="nav-link" href="#">Voltar</a>
+				</div>
+				<button class="btn btn-outline-secondary me-2">Novo</button>
+			</nav>
+			
 		</header>
-		<div class="card mb-2 text-bg-primary p-3" th:each="produtos: ${produtos}">
-			<div class="card-header text-bg-dark p-3" th:text="${produtos.nome}">Nome do
-				Produto</div>
-			<div class="card-body">
+		<div class="card mb-3 text-bg-primary p-3"
+			th:each="produtos: ${produtos}">
+			<div class="card-header text-bg-dark p-3" th:text="${produtos.nome}">Nome
+				do Produto</div>
+			<div class="card-body card-text">
 				<div th:text="${produtos.descricao}">Descrição</div>
 				<div>
 					Valor R$ <span th:text="${produtos.preco}">100,00</span>

@@ -40,7 +40,7 @@ public class Teste implements CommandLineRunner {
 		var prod2 = new Produto(null, "Teclado", "Com fio", 55.5, cat1);
 		var prod3 = new Produto(null, "Caneta", "Bic Azul", 5.5, cat2);
 		var prod4 = new Produto(null, "Tablet", "11 polegadas", 652.43, cat3);
-		var prod5 = new Produto(null, "Monitor XPTO", "Monitor sem fio. Led Ultra HD 65 polegadas Samsung", 15500.0, cat1);
+		var prod5 = new Produto(null, "Monitor XPTO", "Monitor sem fio. Led Ultra HD SmartTech New Generation. 65 polegadas Samsung", 15500.0, cat1);
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
 		

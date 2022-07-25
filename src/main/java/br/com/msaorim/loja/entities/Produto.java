@@ -26,7 +26,7 @@ public class Produto implements Serializable {
 	private Long id;
 	@Column(length = 30)
 	private String nome;
-	@Column(length = 50)
+	@Column(length = 100)
 	private String descricao;
 	private Double preco;
 	
