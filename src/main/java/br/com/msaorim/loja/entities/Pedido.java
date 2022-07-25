@@ -33,6 +33,8 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens = new ArrayList<>();
 	
+	Double total = 0.0;
+	
 	public Pedido() {
 		
 	}
@@ -44,6 +46,8 @@ public class Pedido implements Serializable {
 	
 	public void adicionarItem(ItemPedido item) {
 		item.setPedido(this);
+		total += (item.getPrecoUnitario() * item.getQuantidade());
+		this.setValorTotal(total);
 		itens.add(item);
 	}
 	
