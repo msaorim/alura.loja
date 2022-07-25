@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Produtos</title>
+</head>
+<body>
+	<div th:each="produtos: ${produtos}">
+		<div th:text="${produtos.nome}">Nome do Produto</div>
+		<div th:text="${produtos.descricao}">Descrição</div>
+		<div>Valor R$ <span th:text="${produtos.preco}">100,00</span></div>
+		<div>Categoria: <span th:text="${produtos.categoria.nome}">Eletro</span></div>
+		<div>--------------</div>
+	</div>
+</body>
+</html>
