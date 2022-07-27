@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TB_PRODUTO")
 public class Produto implements Serializable {
@@ -37,6 +39,7 @@ public class Produto implements Serializable {
 	private Categoria categoria;
 	
 	@OneToMany(mappedBy = "produto")
+	@JsonIgnore
 	private List<ItemPedido> itens = new ArrayList<>();
 	
 	public Produto() {

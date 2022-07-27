@@ -34,10 +34,12 @@ public class Teste implements CommandLineRunner {
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
-//
+
+//========================================	
 //	Scanner sc = new Scanner(System.in);
 //	boolean continua = true;
 //	char resp = 's';
+//========================================
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -47,26 +49,38 @@ public class Teste implements CommandLineRunner {
 		var cat3 = new Categoria(null, "Celular");
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
-		var prod1 = new Produto(null, "Mouse", "Sem fio", 80.0, cat1);
-		var prod2 = new Produto(null, "Teclado", "Com fio", 55.5, cat1);
-		var prod3 = new Produto(null, "Caneta", "Bic Azul", 5.5, cat2);
-		var prod4 = new Produto(null, "Tablet", "11 polegadas", 652.43, cat3);
-		var prod5 = new Produto(null, "Monitor XPTO", "Monitor sem fio. Led Ultra HD SmartTech New Generation. 65 polegadas Samsung", 15500.0, cat1);
+		var prod1 = new Produto(null, "Mouse", "Sem fio", 60.0, cat1);
+		var prod2 = new Produto(null, "Teclado", "Com fio", 40.0, cat1);
+		var prod3 = new Produto(null, "Caneta", "Bic Azul", 1.0, cat2);
+		var prod4 = new Produto(null, "Tablet", "11 polegadas", 200.0, cat3);
+		var prod5 = new Produto(null, "Monitor XPTO", "Monitor sem fio. Led Ultra HD Samsung", 2000.0, cat1);
 		produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
 		var cl1 = new Cliente(null, "Jose", "123.123.123-00");
-		clienteRepository.save(cl1);
+		var cl2 = new Cliente(null, "Maria", "222.444.333-11");
+		clienteRepository.saveAll(Arrays.asList(cl1, cl2));
+		
 		var ped1 = new Pedido(null, cl1);
-		pedidoRepository.save(ped1);
+		var ped2 = new Pedido(null, cl2);
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		
 		var item1 = new ItemPedido(null, 2, prod1, ped1);
 		var item2 = new ItemPedido(null, 6, prod3, ped1);
+		var item3 = new ItemPedido(null, 1, prod5, ped2);
+		var item4 = new ItemPedido(null, 2, prod3, ped2);
+		var item5 = new ItemPedido(null, 1, prod1, ped2);
+		var item6 = new ItemPedido(null, 1, prod4, ped2);		
+		itemPedidoRepository.saveAll(Arrays.asList(item1, item2, item3, item4, item5, item6));
+
 		ped1.adicionarItem(item1);
 		ped1.adicionarItem(item2);
-		
-		itemPedidoRepository.saveAll(Arrays.asList(item1, item2));
-		pedidoRepository.save(ped1);
-		
+		ped2.adicionarItem(item3);
+		ped2.adicionarItem(item4);
+		ped2.adicionarItem(item5);
+		ped2.adicionarItem(item6);		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+	
+		// ==================================================================================
 
 //		while (continua) {
 //			System.out.println("\n\nTeste de Cadastros");
@@ -180,5 +194,6 @@ public class Teste implements CommandLineRunner {
 //				System.out.println("Categoria: " + p.getCategoria().getNome() + "\n");
 //			}
 //		}
+//======================================================================================
 	}
 }

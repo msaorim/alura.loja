@@ -16,11 +16,11 @@ import br.com.msaorim.loja.services.PedidoService;
 public class PedidoController {
 
 	@Autowired
-	private PedidoService service;
+	private PedidoService pedidoService;
 	
 	@GetMapping
 	public ResponseEntity<List<Pedido>> findAll(){
-		List<Pedido> lista = service.findAll();
+		List<Pedido> lista = pedidoService.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
 }

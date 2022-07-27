@@ -18,7 +18,7 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService serv;
 	
-	@GetMapping
+	@GetMapping(value = "/all_produtos")
 	public ResponseEntity<List<Produto>> findAll(){
 		return ResponseEntity.ok().body(serv.findAll());
 	}
