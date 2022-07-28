@@ -79,6 +79,10 @@ public class Teste implements CommandLineRunner {
 		ped2.adicionarItem(item5);
 		ped2.adicionarItem(item6);		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		
+		// Fazer relatório com saída:
+		// produto - Qtde Vendida - Última venda
+		
 	
 		// ==================================================================================
 
