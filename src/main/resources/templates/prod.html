@@ -10,24 +10,26 @@
 	crossorigin="anonymous">
 <title>Produtos</title>
 </head>
-<body class="text-bg-dark p-3">
+<body class="text-bg-secondary p-3">
 	<div class="container container-sm">
 		<header>
-			<div class="mt-4 p-5 bg-primary text-white rounded">
-				<h1>Produtos</h1>
+			<div class="mt-4 p-4 bg-dark text-white rounded">
+				<h1 class="display-4">Produtos</h1>
 			</div>
 
 			<nav
-				class="navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-between mb-2">
+				class="navbar navbar-expand bg-light d-flex justify-content-between mb-2">
 				<div class="navbar-nav">
 					<a class="nav-link active" aria-current="page" href="home">Home</a>
 					<a class="nav-link" href="home">Voltar</a>
 				</div>
-				<button class="btn btn-outline-secondary me-2">Novo</button>
+				<a href="/pedido/formulario">
+					<button class="btn btn-outline-dark me-2">Novo</button>
+				</a>
 			</nav>
 
 		</header>
-		<div class="card mb-3 text-bg-primary p-3"
+		<div class="card mb-3 text-bg-light p-3"
 			th:each="produtos: ${produtos}">
 			<div class="card-header text-bg-dark p-3" th:text="${produtos.nome}">Nome
 				do Produto</div>
